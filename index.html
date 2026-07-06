@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NurseCase V2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="app">
+    <section id="home" class="card">
+      <h1>🩺 NurseCase</h1>
+      <p class="subtitle">Clinical judgment practice for nursing students.</p>
+
+      <h2>1. Choose Mode</h2>
+      <div class="button-row">
+        <button onclick="setMode('study')">Study Mode</button>
+        <button onclick="setMode('quiz')">Quiz Mode</button>
+      </div>
+
+      <h2>2. Choose Topics</h2>
+      <label><input type="checkbox" value="ABG Interpretation" class="topic-check"> ABG Interpretation</label>
+      <label><input type="checkbox" value="Respiratory Acidosis" class="topic-check"> Respiratory Acidosis</label>
+      <label><input type="checkbox" value="Respiratory Alkalosis" class="topic-check"> Respiratory Alkalosis</label>
+      <label><input type="checkbox" value="Metabolic Acidosis" class="topic-check"> Metabolic Acidosis</label>
+      <label><input type="checkbox" value="Metabolic Alkalosis" class="topic-check"> Metabolic Alkalosis</label>
+      <label><input type="checkbox" value="Compensation" class="topic-check"> Compensation</label>
+      <label><input type="checkbox" value="Fundamentals" class="topic-check"> Fundamentals</label>
+      <button class="start-btn" onclick="startQuiz()">Start</button>
+    </section>
+
+    <section id="quiz" class="card hidden">
+      <p id="progress"></p>
+      <p id="caseInfo"></p>
+      <h2 id="questionText"></h2>
+      <div id="choices"></div>
+      <div id="feedback" class="hidden"></div>
+
+      <button id="submitBtn" onclick="submitAnswer()">Submit</button>
+      <button id="nextBtn" class="hidden" onclick="nextQuestion()">Next</button>
+    </section>
+
+    <section id="results" class="card hidden">
+      <h2>Results</h2>
+      <p id="score"></p>
+      <div id="review"></div>
+      <button onclick="location.reload()">Start Over</button>
+    </section>
+  </main>
+
+<script src="questions/acid-base/fundamentals.js"></script>
+<script src="questions/acid-base/abg-interpretation.js"></script>
+<script src="questions/acid-base/respiratory-acidosis.js"></script>
+<script src="questions/acid-base/respiratory-alkalosis.js"></script>
+<script src="questions/acid-base/metabolic-acidosis.js"></script>
+<script src="questions/acid-base/metabolic-alkalosis.js"></script>
+<script src="questions/acid-base/compensation.js"></script>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
