@@ -12,41 +12,228 @@
     <section id="home" class="card">
       <h1>🩺 NurseCase</h1>
       <p class="subtitle">Clinical judgment practice for nursing students.</p>
+      <div id="recentSession" class="recent-session"></div>
 
       <h2>1. Choose Mode</h2>
       <div class="button-row">
-        <button onclick="setMode('study')">Study Mode</button>
-        <button onclick="setMode('quiz')">Quiz Mode</button>
+      <button id="studyModeBtn" class="mode-btn" onclick="setMode('study')">
+        📚 Study Mode
+        <span>Immediate feedback</span>
+        </button>
+
+      <button id="quizModeBtn" class="mode-btn" onclick="setMode('quiz')">
+        📝 Quiz Mode
+        <span>Score at the end</span>
+        </button>
+          </div>
+
+<h2>2. Choose Section</h2>
+
+<div class="module-list">
+
+  <div class="module-card active-module">
+    <div class="module-header">
+      <div>
+        <h3>🧪 Acid-Base Disorders</h3>
+        <p>ABGs, compensation, respiratory/metabolic imbalances</p>
+        <p class="module-meta">7 topics • Acid-Base module active</p>
       </div>
 
-      <h2>2. Choose Topics</h2>
-      <label><input type="checkbox" value="ABG Interpretation" class="topic-check"> ABG Interpretation</label>
-      <label><input type="checkbox" value="Respiratory Acidosis" class="topic-check"> Respiratory Acidosis</label>
-      <label><input type="checkbox" value="Respiratory Alkalosis" class="topic-check"> Respiratory Alkalosis</label>
-      <label><input type="checkbox" value="Metabolic Acidosis" class="topic-check"> Metabolic Acidosis</label>
-      <label><input type="checkbox" value="Metabolic Alkalosis" class="topic-check"> Metabolic Alkalosis</label>
-      <label><input type="checkbox" value="Compensation" class="topic-check"> Compensation</label>
-      <label><input type="checkbox" value="Fundamentals" class="topic-check"> Fundamentals</label>
-      <button class="start-btn" onclick="startQuiz()">Start</button>
+      <label class="select-all">
+        <input type="checkbox" id="acidBaseSelectAll" onchange="toggleModule('acid-base', this.checked)">
+        Select All
+      </label>
+    </div>
+
+    <div class="topic-grid">
+      <label><input type="checkbox" value="Fundamentals" class="topic-check acid-base"> Fundamentals</label>
+      <label><input type="checkbox" value="ABG Interpretation" class="topic-check acid-base"> ABG Interpretation</label>
+      <label><input type="checkbox" value="Respiratory Acidosis" class="topic-check acid-base"> Respiratory Acidosis</label>
+      <label><input type="checkbox" value="Respiratory Alkalosis" class="topic-check acid-base"> Respiratory Alkalosis</label>
+      <label><input type="checkbox" value="Metabolic Acidosis" class="topic-check acid-base"> Metabolic Acidosis</label>
+      <label><input type="checkbox" value="Metabolic Alkalosis" class="topic-check acid-base"> Metabolic Alkalosis</label>
+      <label><input type="checkbox" value="Compensation" class="topic-check acid-base"> Compensation</label>
+      <label><input type="checkbox" value="Electrolyte Shifts" class="topic-check acid-base"> Electrolyte Shifts</label>
+      <label><input type="checkbox" value="Nursing Management" class="topic-check acid-base"> Nursing Management </label>
+      <label><input type="checkbox" value="Airway Clearance" class="topic-check oxygenation"> Airway Clearance</label>
+    </div>
+  </div>
+
+  <div class="module-card active-module">
+
+  <div class="module-header">
+
+    <div>
+      <h3>🫁 Oxygenation</h3>
+      <p>Respiratory disorders, oxygen therapy, chest tubes</p>
+    </div>
+
+    <label class="select-all">
+      <input type="checkbox"
+             id="oxygenSelectAll"
+             onchange="toggleModule('oxygenation', this.checked)">
+      Select All
+    </label>
+
+  </div>
+
+  <div class="topic-grid">
+
+    <label><input type="checkbox" value="Oxygen Delivery" class="topic-check oxygenation"> Oxygen Delivery</label>
+    <label><input type="checkbox" value="Hypoxia" class="topic-check oxygenation"> Hypoxia</label>
+    <label><input type="checkbox" value="COPD" class="topic-check oxygenation"> COPD</label>
+    <label><input type="checkbox" value="Asthma" class="topic-check oxygenation"> Asthma</label>
+    <label><input type="checkbox" value="Pneumonia" class="topic-check oxygenation"> Pneumonia</label>
+    <label><input type="checkbox" value="Chest Tubes" class="topic-check oxygenation"> Chest Tubes</label>
+    <label><input type="checkbox" value="Pulmonary Embolism" class="topic-check oxygenation"> Pulmonary Embolism</label>
+    <label><input type="checkbox" value="Tracheostomy" class="topic-check oxygenation"> Tracheostomy</label>
+    <label><input type="checkbox" value="Mechanical Ventilation" class="topic-check oxygenation"> Mechanical Ventilation</label>
+    <label><input type="checkbox" value="Respiratory Failure" class="topic-check oxygenation"> Respiratory Failure</label>
+    <label><input type="checkbox" value="Oxygenation Nursing Management" class="topic-check oxygenation"> Oxygenation Nursing Management</label>
+    <label><input type="checkbox" value="Oxygenation Mixed Review" class="topic-check oxygenation"> Oxygenation Mixed Review</label>
+
+  </div>
+
+</div>
+
+  <div class="module-card active-module">
+
+  <div class="module-header">
+    <div>
+      <h3>💧 Fluids & Electrolytes</h3>
+      <p>Sodium, potassium, calcium, magnesium, IV fluids</p>
+    </div>
+
+    <label class="select-all">
+      <input type="checkbox"
+             id="fluidsSelectAll"
+             onchange="toggleModule('fluids', this.checked)">
+      Select All
+    </label>
+  </div>
+
+  <div class="topic-grid">
+    <label><input type="checkbox" value="Sodium Disorders" class="topic-check fluids"> Sodium Disorders</label>
+    <label><input type="checkbox" value="Potassium Disorders" class="topic-check fluids"> Potassium Disorders</label>
+    <label><input type="checkbox" value="Calcium Disorders" class="topic-check fluids"> Calcium Disorders</label>
+    <label><input type="checkbox" value="Magnesium Disorders" class="topic-check fluids"> Magnesium Disorders</label>
+    <label><input type="checkbox" value="IV Fluids" class="topic-check fluids"> IV Fluids</label>
+    <label><input type="checkbox" value="Fluid Volume Deficit" class="topic-check fluids"> Fluid Volume Deficit</label>
+    <label><input type="checkbox" value="Fluid Volume Excess" class="topic-check fluids"> Fluid Volume Excess</label>
+    <label><input type="checkbox" value="Fluids Mixed Review" class="topic-check fluids"> Fluids Mixed Review</label>
+  </div>
+
+</div>
+
+<div class="module-card active-module">
+  <div class="module-header">
+    <div>
+      <h3>🧠 Neuro</h3>
+      <p>Parkinson's disease, seizures, multiple sclerosis</p>
+      <p class="module-meta">Exam focus • Coming online</p>
+    </div>
+
+    <label class="select-all">
+      <input type="checkbox"
+             id="neuroSelectAll"
+             onchange="toggleModule('neuro', this.checked)">
+      Select All
+    </label>
+  </div>
+
+  <div class="topic-grid">
+    <label><input type="checkbox" value="Parkinson's Disease" class="topic-check neuro"> Parkinson's Disease</label>
+    <label><input type="checkbox" value="Seizures" class="topic-check neuro"> Seizures</label>
+    <label><input type="checkbox" value="Multiple Sclerosis" class="topic-check neuro"> Multiple Sclerosis</label>
+    <label><input type="checkbox" value="Neuro Mixed Review" class="topic-check neuro"> Neuro Mixed Review</label>
+    <label><input type="checkbox" value="Neuro Nursing Management" class="topic-check neuro"> Neuro Nursing Management</label>
+    <label><input type="checkbox" value="Neuro Priority & Application" class="topic-check neuro"> Neuro Priority & Application</label>
+    <label><input type="checkbox" value="Neuro Exam Focus" class="topic-check neuro"> Neuro Exam Focus</label>
+    <label><input type="checkbox" value="Neuro Safety Review" class="topic-check neuro"> Neuro Safety Review</label>
+    <label><input type="checkbox" value="Neuro Medications Review" class="topic-check neuro"> Neuro Medications Review</label>
+    <label><input type="checkbox" value="Neuro Scenario Challenge" class="topic-check neuro"> Neuro Scenario Challenge</label>
+    <label><input type="checkbox" value="Neuro Rapid Review" class="topic-check neuro"> Neuro Rapid Review</label>
+  </div>
+</div>
+
+</div>
+
+<p id="selectionSummary" class="selection-summary">
+  Select a mode and topic to begin.
+</p>
+
+<h2>3. Choose Number of Questions</h2>
+
+<select id="questionCount" class="question-count">
+  <option value="all">All Selected Questions</option>
+  <option value="10">10 Questions</option>
+  <option value="15">15 Questions</option>
+  <option value="25">25 Questions</option>
+  <option value="50">50 Questions</option>
+</select>
+
+<button class="start-btn" onclick="startQuiz()">Start Session</button>
     </section>
 
     <section id="quiz" class="card hidden">
-      <p id="progress"></p>
-      <p id="caseInfo"></p>
+      <div class="progress-container">
+        <div id="progressBar"></div>
+      </div>
+        <p class="eyebrow" id="progress"></p>
+        <h3 id="patientName"></h3>
+        <p id="caseInfo"></p>
+        </div>
       <h2 id="questionText"></h2>
       <div id="choices"></div>
       <div id="feedback" class="hidden"></div>
 
-      <button id="submitBtn" onclick="submitAnswer()">Submit</button>
-      <button id="nextBtn" class="hidden" onclick="nextQuestion()">Next</button>
+      <div class="quiz-actions">
+
+    <button
+        class="secondary-btn"
+        onclick="goHome()">
+
+        ← Home
+
+    </button>
+
+    <button
+        id="submitBtn"
+        onclick="submitAnswer()">
+
+        Submit →
+
+    </button>
+
+    <button
+        id="nextBtn"
+        class="hidden"
+        onclick="nextQuestion()">
+
+        Next →
+
+    </button>
+
+</div>
     </section>
 
     <section id="results" class="card hidden">
-      <h2>Results</h2>
-      <p id="score"></p>
-      <div id="review"></div>
-      <button onclick="location.reload()">Start Over</button>
-    </section>
+      <div class="results-hero">
+        <h2>Session Complete</h2>
+        <p id="score"></p>
+        <p id="scoreMessage"></p>
+        <div id="topicBreakdown" class="topic-breakdown"></div>
+      </div>
+
+  <div class="button-row">
+  <button onclick="studyAgain()">Study Again</button>
+  <button onclick="reviewIncorrect()">Review Incorrect</button>
+  <button onclick="reviewAll()">Review All</button>
+  <button class="secondary-btn" onclick="goHome()">Back Home</button>
+</div>
+
+  <div id="review"></div>
+</section>
   </main>
 
 <script src="questions/acid-base/fundamentals.js"></script>
@@ -56,8 +243,44 @@
 <script src="questions/acid-base/metabolic-acidosis.js"></script>
 <script src="questions/acid-base/metabolic-alkalosis.js"></script>
 <script src="questions/acid-base/compensation.js"></script>
+<script src="questions/acid-base/electrolyte-shifts.js"></script>
+<script src="questions/acid-base/nursing-management.js"></script>
+<script src="questions/oxygenation/oxygen-delivery.js"></script>
+<script src="questions/oxygenation/hypoxia.js"></script>
+<script src="questions/oxygenation/copd.js"></script>
+<script src="questions/oxygenation/asthma.js"></script>
+<script src="questions/oxygenation/pneumonia.js"></script>
+<script src="questions/oxygenation/chest-tubes.js"></script>
+<script src="questions/oxygenation/pulmonary-embolism.js"></script>
+<script src="questions/oxygenation/tracheostomy.js"></script>
+<script src="questions/oxygenation/mechanical-ventilation.js"></script>
+<script src="questions/oxygenation/respiratory-failure.js"></script>
+<script src="questions/oxygenation/airway-clearance.js"></script>
+<script src="questions/oxygenation/oxygenation-nursing-management.js"></script>
+<script src="questions/oxygenation/oxygenation-mixed-review.js"></script>
+<script src="questions/fluids-electrolytes/sodium-disorders.js"></script>
+<script src="questions/fluids-electrolytes/potassium-disorders.js"></script>
+<script src="questions/fluids-electrolytes/calcium-disorders.js"></script>
+<script src="questions/fluids-electrolytes/magnesium-disorders.js"></script>
+<script src="questions/fluids-electrolytes/iv-fluids.js"></script>
+<script src="questions/fluids-electrolytes/fluid-volume-deficit.js"></script>
+<script src="questions/fluids-electrolytes/fluid-volume-excess.js"></script>
+<script src="questions/fluids-electrolytes/fluids-mixed-review.js"></script>
+<script src="questions/neuro/parkinsons-disease.js"></script>
+<script src="questions/neuro/multiple-sclerosis.js"></script>
+<script src="questions/neuro/neuro-mixed-review.js"></script>
+<script src="questions/neuro/neuro-nursing-management.js"></script>
+<script src="questions/neuro/neuro-priority-application.js"></script>
+<script src="questions/neuro/neuro-exam-focus.js"></script>
+<script src="questions/neuro/neuro-safety-review.js"></script>
+<script src="questions/neuro/neuro-medications-review.js"></script>
+<script src="questions/neuro/neuro-scenario-challenge.js"></script>
+<script src="questions/neuro/neuro-rapid-review.js"></script>
+
+<script src="questions/neuro/seizures.js"></script>
 
 <script src="questions.js"></script>
 <script src="app.js"></script>
+
 </body>
 </html>
