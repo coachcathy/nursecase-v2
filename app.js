@@ -79,19 +79,35 @@ function showQuestion() {
   document.getElementById("caseInfo").textContent =
     `${q.caseId} • ${q.topic} • ${q.subtopic || q.style}`;
 
-  document.getElementById("questionText").textContent = q.question;
+  const questionText = document.getElementById("questionText");
+
+if (Array.isArray(q.answer)) {
+  questionText.innerHTML = `
+    ${q.question}
+    <br>
+    <small class="sata-label">Select all that apply.</small>
+  `;
+} else {
+  questionText.textContent = q.question;
+}
 
   const choicesDiv = document.getElementById("choices");
   choicesDiv.innerHTML = "";
 
-  q.choices.forEach(choice => {
-    choicesDiv.innerHTML += `
-      <label class="choice" onclick="highlightChoice(this)">
-        <input type="radio" name="answer" value="${choice}">
-        <span>${choice}</span>
-      </label>
-    `;
-  });
+// Determine whether this is a Select All That Apply question
+const inputType = Array.isArray(q.answer) ? "checkbox" : "radio";
+
+shuffleQuestions(q.choices).forEach(choice =>  {
+  choicesDiv.innerHTML += `
+    <label class="choice" onclick="highlightChoice(this)">
+      <input
+        type="${inputType}"
+        name="answer"
+        value="${choice}">
+      <span>${choice}</span>
+    </label>
+  `;
+});
 
   document.getElementById("feedback").classList.add("hidden");
   document.getElementById("feedback").innerHTML = "";
@@ -100,26 +116,71 @@ function showQuestion() {
 };
 
 function submitAnswer() {
-  const selected = document.querySelector('input[name="answer"]:checked');
+  const selectedAnswers = [];
 
-  if (!selected) {
+  document
+    .querySelectorAll('input[name="answer"]:checked')
+    .forEach(input => {
+      selectedAnswers.push(input.value);
+    });
+
+  if (selectedAnswers.length === 0) {
     alert("Choose an answer first.");
     return;
   }
 
   const q = selectedQuestions[currentQuestionIndex];
-  const isCorrect = selected.value === q.answer;
 
-  userAnswers[currentQuestionIndex] = selected.value;
+  let isCorrect = false;
+
+  if (Array.isArray(q.answer)) {
+    isCorrect =
+      selectedAnswers.length === q.answer.length &&
+      selectedAnswers.every(answer => q.answer.includes(answer));
+  } else {
+    isCorrect =
+      selectedAnswers.length === 1 &&
+      selectedAnswers[0] === q.answer;
+  }
+
+  userAnswers[currentQuestionIndex] = Array.isArray(q.answer)
+    ? selectedAnswers
+    : selectedAnswers[0];
 
   if (isCorrect) score++;
+
+  // Highlight answers in Study Mode
+  document.querySelectorAll(".choice").forEach(label => {
+    const input = label.querySelector("input");
+    const value = input.value;
+
+    const isCorrectAnswer = Array.isArray(q.answer)
+      ? q.answer.includes(value)
+      : value === q.answer;
+
+    const wasSelected = selectedAnswers.includes(value);
+
+    if (isCorrectAnswer) {
+      label.classList.add("correct-choice");
+    }
+
+    if (wasSelected && !isCorrectAnswer) {
+      label.classList.add("wrong-choice");
+    }
+
+    input.disabled = true;
+  });
+
+  const correctAnswer = Array.isArray(q.answer)
+    ? q.answer.join(", ")
+    : q.answer;
 
   if (selectedMode === "study") {
     const feedback = document.getElementById("feedback");
     feedback.classList.remove("hidden");
     feedback.innerHTML = `
       <h3>${isCorrect ? "✅ Correct" : "❌ Not quite"}</h3>
-      <p><strong>Correct answer:</strong> ${q.answer}</p>
+      <p><strong>Correct answer:</strong> ${correctAnswer}</p>
       <p><strong>Rationale:</strong> ${q.rationale}</p>
     `;
 

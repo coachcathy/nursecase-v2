@@ -1,4 +1,5 @@
 const questionBank = [
+  // Acid-Base
   ...fundamentalsQuestions,
   ...abgInterpretationQuestions,
   ...respiratoryAcidosisQuestions,
@@ -6,8 +7,8 @@ const questionBank = [
   ...metabolicAcidosisQuestions,
   ...metabolicAlkalosisQuestions,
   ...compensationQuestions,
-  ...electrolyteShiftQuestions,
-  ...nursingManagementQuestions,
+
+  // Oxygenation
   ...oxygenDeliveryQuestions,
   ...hypoxiaQuestions,
   ...copdQuestions,
@@ -21,6 +22,8 @@ const questionBank = [
   ...airwayClearanceQuestions,
   ...oxygenationNursingManagementQuestions,
   ...oxygenationMixedReviewQuestions,
+
+  // Fluids and Electrolytes
   ...sodiumDisorderQuestions,
   ...potassiumDisorderQuestions,
   ...calciumDisorderQuestions,
@@ -29,8 +32,9 @@ const questionBank = [
   ...fluidVolumeDeficitQuestions,
   ...fluidVolumeExcessQuestions,
   ...fluidsMixedReviewQuestions,
+
+  // Neurology
   ...parkinsonsDiseaseQuestions,
-  ...seizureQuestions,
   ...seizureQuestions,
   ...multipleSclerosisQuestions,
   ...neuroMixedReviewQuestions,
@@ -40,5 +44,21 @@ const questionBank = [
   ...neuroSafetyReviewQuestions,
   ...neuroMedicationsReviewQuestions,
   ...neuroScenarioChallengeQuestions,
-...neuroRapidReviewQuestions
+  ...neuroRapidReviewQuestions,
+
+// Musculoskeletal
+...boneFundamentalsQuestions,
+...fractureTypesQuestions,
+...fractureManagementQuestions,
+...tractionQuestions,
+...fractureComplicationsQuestions,
+...neurovascularAssessmentQuestions,
+...osteomyelitisQuestions,
+...musculoskeletalMedicationQuestions,
+...mobilityAssistiveDeviceQuestions,
+...musculoskeletalPrioritySataQuestions,
+...musculoskeletalMixedReviewQuestions,
+...musculoskeletalNgnCaseQuestions
 ];
+
+console.log(`NurseCase loaded ${questionBank.length} questions.`);

@@ -154,6 +154,42 @@
     <label><input type="checkbox" value="Neuro Scenario Challenge" class="topic-check neuro"> Neuro Scenario Challenge</label>
     <label><input type="checkbox" value="Neuro Rapid Review" class="topic-check neuro"> Neuro Rapid Review</label>
   </div>
+
+<div class="module-card active-module">
+  <div class="module-header">
+    <div>
+      <h3>🦴 Musculoskeletal</h3>
+      <p>Fractures, casting, traction, complications, mobility, and pain</p>
+      <p class="module-meta">New exam focus • Module in progress</p>
+    </div>
+
+    <label class="select-all">
+      <input
+        type="checkbox"
+        id="musculoskeletalSelectAll"
+        onchange="toggleModule('musculoskeletal', this.checked)"
+      >
+      Select All
+    </label>
+  </div>
+
+  <div class="topic-grid">
+    <label><input type="checkbox" value="Bone Fundamentals" class="topic-check musculoskeletal">Bone Fundamentals</label>
+    <label><input type="checkbox" value="Fracture Types" class="topic-check musculoskeletal">Fracture Types</label>
+    <label><input type="checkbox" value="Fracture Management" class="topic-check musculoskeletal">Fracture Management</label>
+    <label><input type="checkbox" value="Traction" class="topic-check musculoskeletal">Traction</label>
+    <label><input type="checkbox" value="Fracture Complications" class="topic-check musculoskeletal"> Fracture Complications</label>
+    <label><input type="checkbox" value="Neurovascular Assessment" class="topic-check musculoskeletal">Neurovascular Assessment</label>
+    <label><input type="checkbox" value="Osteomyelitis" class="topic-check musculoskeletal">Osteomyelitis</label>
+    <label><input type="checkbox" value="Musculoskeletal Medications" class="topic-check musculoskeletal">Medications & Pain Management</label>
+    <label><input type="checkbox" value="Mobility & Assistive Devices" class="topic-check musculoskeletal"> Mobility, Crutches & Assistive Devices</label>
+    <label><input type="checkbox" value="Musculoskeletal Priority & SATA" class="topic-check musculoskeletal"> Priority & SATA Review</label>
+    <label><input type="checkbox" value="Musculoskeletal Mixed Review" class="topic-check musculoskeletal"> Musculoskeletal Mixed Review</label>
+    <label><input type="checkbox" value="Musculoskeletal NGN Cases" class="topic-check musculoskeletal">NGN Fracture Case Studies</label>
+  
+  </div>
+</div>
+
 </div>
 
 </div>
@@ -235,7 +271,14 @@
   <div id="review"></div>
 </section>
   </main>
+<!-- ========================= -->
+<!-- Utilities -->
+<!-- ========================= -->
+<script src="utils/random-patient.js"></script>
 
+<!-- ========================= -->
+<!-- Acid Base -->
+<!-- ========================= -->
 <script src="questions/acid-base/fundamentals.js"></script>
 <script src="questions/acid-base/abg-interpretation.js"></script>
 <script src="questions/acid-base/respiratory-acidosis.js"></script>
@@ -243,43 +286,75 @@
 <script src="questions/acid-base/metabolic-acidosis.js"></script>
 <script src="questions/acid-base/metabolic-alkalosis.js"></script>
 <script src="questions/acid-base/compensation.js"></script>
-<script src="questions/acid-base/electrolyte-shifts.js"></script>
-<script src="questions/acid-base/nursing-management.js"></script>
-<script src="questions/oxygenation/oxygen-delivery.js"></script>
-<script src="questions/oxygenation/hypoxia.js"></script>
-<script src="questions/oxygenation/copd.js"></script>
-<script src="questions/oxygenation/asthma.js"></script>
-<script src="questions/oxygenation/pneumonia.js"></script>
-<script src="questions/oxygenation/chest-tubes.js"></script>
-<script src="questions/oxygenation/pulmonary-embolism.js"></script>
-<script src="questions/oxygenation/tracheostomy.js"></script>
-<script src="questions/oxygenation/mechanical-ventilation.js"></script>
-<script src="questions/oxygenation/respiratory-failure.js"></script>
-<script src="questions/oxygenation/airway-clearance.js"></script>
-<script src="questions/oxygenation/oxygenation-nursing-management.js"></script>
-<script src="questions/oxygenation/oxygenation-mixed-review.js"></script>
-<script src="questions/fluids-electrolytes/sodium-disorders.js"></script>
-<script src="questions/fluids-electrolytes/potassium-disorders.js"></script>
-<script src="questions/fluids-electrolytes/calcium-disorders.js"></script>
-<script src="questions/fluids-electrolytes/magnesium-disorders.js"></script>
-<script src="questions/fluids-electrolytes/iv-fluids.js"></script>
-<script src="questions/fluids-electrolytes/fluid-volume-deficit.js"></script>
-<script src="questions/fluids-electrolytes/fluid-volume-excess.js"></script>
-<script src="questions/fluids-electrolytes/fluids-mixed-review.js"></script>
+
+<!-- ========================= -->
+<!-- Oxygenation -->
+<!-- ========================= -->
+<script src="./questions/oxygenation/airway-clearance.js"></script>
+<script src="./questions/oxygenation/asthma.js"></script>
+<script src="./questions/oxygenation/chest-tubes.js"></script>
+<script src="./questions/oxygenation/copd.js"></script>
+<script src="./questions/oxygenation/hypoxia.js"></script>
+<script src="./questions/oxygenation/mechanical-ventilation.js"></script>
+<script src="./questions/oxygenation/oxygen-delivery.js"></script>
+<script src="./questions/oxygenation/oxygenation-mixed-review.js"></script>
+<script src="./questions/oxygenation/oxygenation-nursing-management.js"></script>
+<script src="./questions/oxygenation/pneumonia.js"></script>
+<script src="./questions/oxygenation/pulmonary-embolism.js"></script>
+<script src="./questions/oxygenation/respiratory-failure.js"></script>
+<script src="./questions/oxygenation/tracheostomy.js"></script>
+
+<!-- ========================= -->
+<!-- Fluids & Electrolytes -->
+<!-- ========================= -->
+<script src="./questions/fluids-electrolytes/sodium-disorders.js"></script>
+<script src="./questions/fluids-electrolytes/potassium-disorders.js"></script>
+<script src="./questions/fluids-electrolytes/calcium-disorders.js"></script>
+<script src="./questions/fluids-electrolytes/magnesium-disorders.js"></script>
+<script src="./questions/fluids-electrolytes/iv-fluids.js"></script>
+<script src="./questions/fluids-electrolytes/fluid-volume-deficit.js"></script>
+<script src="./questions/fluids-electrolytes/fluid-volume-excess.js"></script>
+<script src="./questions/fluids-electrolytes/fluids-mixed-review.js"></script>
+
+<!-- ========================= -->
+<!-- Neuro -->
+<!-- ========================= -->
 <script src="questions/neuro/parkinsons-disease.js"></script>
 <script src="questions/neuro/multiple-sclerosis.js"></script>
+<script src="questions/neuro/seizures.js"></script>
+<script src="questions/neuro/neuro-medications-review.js"></script>
+<script src="questions/neuro/neuro-scenario-challenge.js"></script>
+<script src="questions/neuro/neuro-rapid-review.js"></script>
 <script src="questions/neuro/neuro-mixed-review.js"></script>
 <script src="questions/neuro/neuro-nursing-management.js"></script>
 <script src="questions/neuro/neuro-priority-application.js"></script>
 <script src="questions/neuro/neuro-exam-focus.js"></script>
 <script src="questions/neuro/neuro-safety-review.js"></script>
-<script src="questions/neuro/neuro-medications-review.js"></script>
-<script src="questions/neuro/neuro-scenario-challenge.js"></script>
-<script src="questions/neuro/neuro-rapid-review.js"></script>
 
-<script src="questions/neuro/seizures.js"></script>
+<!-- ========================= -->
+<!-- Musculoskeletal -->
+<!-- ========================= -->
+<script src="questions/musculoskeletal/bone-fundamentals.js"></script>
+<script src="./questions/musculoskeletal/fracture-types.js"></script>
+<script src="./questions/musculoskeletal/fracture-management.js"></script>
+<script src="./questions/musculoskeletal/traction.js"></script>
+<script src="./questions/musculoskeletal/fracture-complications.js"></script>
+<script src="./questions/musculoskeletal/neurovascular-assessment.js"></script>
+<script src="./questions/musculoskeletal/osteomyelitis.js"></script>
+<script src="./questions/musculoskeletal/medications-pain-management.js"></script>
+<script src="./questions/musculoskeletal/mobility-assistive-devices.js"></script>
+<script src="./questions/musculoskeletal/priority-sata-review.js"></script>
+<script src="./questions/musculoskeletal/musculoskeletal-mixed-review.js"></script>
+<script src="./questions/musculoskeletal/ngn-fracture-cases.js"></script>
 
+<!-- ========================= -->
+<!-- Master Question Bank -->
+<!-- ========================= -->
 <script src="questions.js"></script>
+
+<!-- ========================= -->
+<!-- Application -->
+<!-- ========================= -->
 <script src="app.js"></script>
 
 </body>
