@@ -58,7 +58,23 @@ const questionBank = [
 ...mobilityAssistiveDeviceQuestions,
 ...musculoskeletalPrioritySataQuestions,
 ...musculoskeletalMixedReviewQuestions,
-...musculoskeletalNgnCaseQuestions
+...musculoskeletalNgnCaseQuestions,
+
+// Perfusion
+...perfusionFundamentalsQuestions,
+...hypertensionQuestions,
+...antihypertensiveMedicationQuestions,
+...hypertensiveCrisisQuestions,
+...peripheralArterialDiseaseQuestions,
+...acuteArterialOcclusionQuestions,
+...buergerRaynaudQuestions,
+...dvtVteQuestions,
+...anticoagulantQuestions,
+...venousInsufficiencyQuestions,
+...vascularUlcerQuestions,
+...perfusionPrioritySataQuestions,
+...ngnPerfusionCaseQuestions,
+...perfusionMixedReviewQuestions,
 ];
 
 console.log(`NurseCase loaded ${questionBank.length} questions.`);
