@@ -53,9 +53,6 @@
       <label><input type="checkbox" value="Metabolic Acidosis" class="topic-check acid-base"> Metabolic Acidosis</label>
       <label><input type="checkbox" value="Metabolic Alkalosis" class="topic-check acid-base"> Metabolic Alkalosis</label>
       <label><input type="checkbox" value="Compensation" class="topic-check acid-base"> Compensation</label>
-      <label><input type="checkbox" value="Electrolyte Shifts" class="topic-check acid-base"> Electrolyte Shifts</label>
-      <label><input type="checkbox" value="Nursing Management" class="topic-check acid-base"> Nursing Management </label>
-      <label><input type="checkbox" value="Airway Clearance" class="topic-check oxygenation"> Airway Clearance</label>
     </div>
   </div>
 
@@ -89,6 +86,7 @@
     <label><input type="checkbox" value="Tracheostomy" class="topic-check oxygenation"> Tracheostomy</label>
     <label><input type="checkbox" value="Mechanical Ventilation" class="topic-check oxygenation"> Mechanical Ventilation</label>
     <label><input type="checkbox" value="Respiratory Failure" class="topic-check oxygenation"> Respiratory Failure</label>
+    <label><input type="checkbox" value="Airway Clearance" class="topic-check oxygenation"> Airway Clearance</label>
     <label><input type="checkbox" value="Oxygenation Nursing Management" class="topic-check oxygenation"> Oxygenation Nursing Management</label>
     <label><input type="checkbox" value="Oxygenation Mixed Review" class="topic-check oxygenation"> Oxygenation Mixed Review</label>
 
@@ -328,8 +326,77 @@
 </label>
   </div>
 </div>
-</div>
+<!-- ========================= -->
+<!-- INFLAMMATION & INFECTION -->
+<!-- ========================= -->
 
+<div class="module-card active-module">
+  <div class="module-header">
+    <div>
+      <h3>🔥 Inflammation & Infection</h3>
+      <p>
+        Inflammation, gastrointestinal disorders,
+        bacterial and viral infections, pediatric infections,
+        tuberculosis, ostomy care, NCLEX priority,
+        SATA, and NGN clinical judgment.
+      </p>
+      <p class="module-meta">
+        19 Study Modules • Priority & SATA • NGN Case Studies
+      </p>
+    </div>
+
+    <label class="select-all">
+      <input
+        type="checkbox"
+        id="inflammationSelectAll"
+        onchange="toggleModule('inflammation', this.checked)"
+      >
+      Select All
+    </label>
+  </div>
+
+  <div class="topic-grid">
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Inflammation Fundamentals"> Inflammation Fundamentals</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Appendicitis"> Appendicitis</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Celiac Disease"> Celiac Disease</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Cholecystitis"> Cholecystitis</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Pancreatitis"> Pancreatitis</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Cirrhosis"> Cirrhosis</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Hepatitis"> Hepatitis</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Inflammatory Bowel Disease"> Inflammatory Bowel Disease</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Ostomy Care"> Ostomy Care</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Infection Fundamentals"> Infection Fundamentals</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Pediatric Infections"> Pediatric Infections</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Respiratory Infections"> Respiratory Infections</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Tuberculosis"> Tuberculosis</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Urinary Tract Infection"> Urinary Tract Infection</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Skin & Soft Tissue Infections"> Skin & Soft Tissue Infections</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Otitis Media"> Otitis Media</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Conjunctivitis"> Conjunctivitis</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="Inflammation & Infection Priority and SATA"> Priority & SATA Review</label>
+
+    <label><input type="checkbox" class="topic-check inflammation" value="NGN Inflammation & Infection Cases"> NGN Case Studies</label>
+
+  </div>
+</div>
 </div>
 
 <p id="selectionSummary" class="selection-summary">
@@ -356,7 +423,6 @@
         <p class="eyebrow" id="progress"></p>
         <h3 id="patientName"></h3>
         <p id="caseInfo"></p>
-        </div>
       <h2 id="questionText"></h2>
       <div id="choices"></div>
       <div id="feedback" class="hidden"></div>
@@ -501,6 +567,30 @@
 <script src="./questions/perfusion/perfusion-priority-sata.js"></script>
 <script src="./questions/perfusion/ngn-perfusion-cases.js"></script>
 <script src="./questions/perfusion/perfusion-mixed-review.js"></script>
+
+<!-- =========================
+     INFLAMMATION & INFECTION
+========================= -->
+
+<script src="./questions/inflammation-infection/inflammation-fundamentals.js"></script>
+<script src="./questions/inflammation-infection/appendicitis.js"></script>
+<script src="./questions/inflammation-infection/celiac-disease.js"></script>
+<script src="./questions/inflammation-infection/cholecystitis.js"></script>
+<script src="./questions/inflammation-infection/pancreatitis.js"></script>
+<script src="./questions/inflammation-infection/cirrhosis.js"></script>
+<script src="./questions/inflammation-infection/hepatitis.js"></script>
+<script src="./questions/inflammation-infection/inflammatory-bowel-disease.js"></script>
+<script src="./questions/inflammation-infection/ostomy-care.js"></script>
+<script src="./questions/inflammation-infection/infection-fundamentals.js"></script>
+<script src="./questions/inflammation-infection/pediatric-infections.js"></script>
+<script src="./questions/inflammation-infection/respiratory-infections.js"></script>
+<script src="./questions/inflammation-infection/tuberculosis.js"></script>
+<script src="./questions/inflammation-infection/urinary-tract-infection.js"></script>
+<script src="./questions/inflammation-infection/skin-soft-tissue-infections.js"></script>
+<script src="./questions/inflammation-infection/otitis-media.js"></script>
+<script src="./questions/inflammation-infection/conjunctivitis.js"></script>
+<script src="./questions/inflammation-infection/priority-sata-review.js"></script>
+<script src="./questions/inflammation-infection/ngn-inflammation-infection-cases.js"></script>
 
 <!-- ========================= -->
 <!-- Master Question Bank -->
