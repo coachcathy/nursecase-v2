@@ -75,6 +75,26 @@ const questionBank = [
 ...perfusionPrioritySataQuestions,
 ...ngnPerfusionCaseQuestions,
 ...perfusionMixedReviewQuestions,
+
+// INFLAMMATION & INFECTION
+...inflammationFundamentalsQuestions,
+  ...appendicitisQuestions,
+  ...celiacDiseaseQuestions,
+  ...cholecystitisQuestions,
+  ...pancreatitisQuestions,
+  ...cirrhosisQuestions,
+  ...hepatitisQuestions,
+  ...inflammatoryBowelDiseaseQuestions,
+  ...ostomyCareQuestions,
+  ...infectionFundamentalsQuestions,
+  ...pediatricInfectionsQuestions,
+  ...respiratoryInfectionsQuestions,
+  ...tuberculosisQuestions,
+  ...urinaryTractInfectionQuestions,
+  ...skinSoftTissueInfectionsQuestions,
+  ...otitisMediaQuestions,
+  ...conjunctivitisQuestions,
+  ...ngnInflammationInfectionCaseQuestions
 ];
 
 console.log(`NurseCase loaded ${questionBank.length} questions.`);
