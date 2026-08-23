@@ -5,6 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NurseCase V2</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .course-hidden { display: none !important; }
+
+    .course-dashboard { margin: 1.75rem 0 2rem; }
+    .course-dashboard-header { margin-bottom: 1rem; }
+    .course-dashboard-header h2 { margin-bottom: .35rem; }
+    .course-dashboard-header p { margin: 0; opacity: .78; }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .course-card {
+      border: 1px solid rgba(148, 163, 184, .28);
+      border-radius: 18px;
+      padding: 1.25rem;
+      background: rgba(255, 255, 255, .04);
+      display: flex;
+      flex-direction: column;
+      gap: .85rem;
+      min-height: 245px;
+    }
+
+    .course-card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .course-badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: .35rem .7rem;
+      font-size: .82rem;
+      font-weight: 700;
+      background: rgba(59, 130, 246, .12);
+      margin-bottom: .55rem;
+    }
+
+    .course-card h3 { margin: 0; font-size: 1.35rem; }
+    .course-card p { margin: 0; line-height: 1.5; opacity: .82; }
+    .course-topic-preview { font-size: .92rem; opacity: .72; }
+    .course-card button { margin-top: auto; width: 100%; }
+
+    .selected-course-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding: .9rem 1rem;
+      border: 1px solid rgba(148, 163, 184, .25);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .035);
+    }
+
+    .selected-course-bar strong { display: block; font-size: 1rem; }
+    .selected-course-bar span {
+      display: block;
+      font-size: .85rem;
+      opacity: .7;
+      margin-top: .15rem;
+    }
+
+    .change-course-btn { width: auto !important; white-space: nowrap; }
+    .course-section-heading { margin: .35rem 0 1rem; }
+    .course-section-heading h2 { margin-bottom: .25rem; }
+    .course-section-heading p { margin: 0; opacity: .72; }
+
+    @media (max-width: 760px) {
+      .course-grid { grid-template-columns: 1fr; }
+      .selected-course-bar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .change-course-btn { width: 100% !important; }
+    }
+  </style>
 </head>
 <body>
 
@@ -13,6 +95,56 @@
       <h1>🩺 NurseCase</h1>
       <p class="subtitle">Clinical judgment practice for nursing students.</p>
       <div id="recentSession" class="recent-session"></div>
+       <section id="courseChooser" class="course-dashboard">
+         <div class="course-dashboard-header">
+           <h2>Choose Your Course</h2>
+           <p>Open one course at a time so your study screen stays focused and easy to navigate.</p>
+         </div>
+
+         <div class="course-grid">
+           <article class="course-card">
+             <div class="course-card-top">
+               <div>
+                 <span class="course-badge">NUR 113</span>
+                 <h3>Foundations & Med-Surg</h3>
+               </div>
+               <span aria-hidden="true">📘</span>
+             </div>
+             <p>Review the core NUR 113 modules without scrolling through newer semester content.</p>
+             <p class="course-topic-preview">
+               Acid-Base • Oxygenation • Fluids & Electrolytes • Neuro • Musculoskeletal • Perfusion • Inflammation & Infection
+             </p>
+             <button type="button" onclick="selectNurseCaseCourse('nur113')">Open NUR 113 →</button>
+           </article>
+
+           <article class="course-card">
+             <div class="course-card-top">
+               <div>
+                 <span class="course-badge">NUR 114</span>
+                 <h3>Advanced Nursing</h3>
+               </div>
+               <span aria-hidden="true">❤️</span>
+             </div>
+             <p>Start the new semester with focused access to the growing NUR 114 question bank.</p>
+             <p class="course-topic-preview">
+               Cardiac Dysrhythmias • ECG • Rhythms • Pharmacology • Priority • SATA • NGN
+             </p>
+             <button type="button" onclick="selectNurseCaseCourse('nur114')">Open NUR 114 →</button>
+           </article>
+         </div>
+       </section>
+
+       <div id="courseStudySetup" class="course-hidden">
+         <div class="selected-course-bar">
+           <div>
+             <strong id="selectedCourseName">Selected Course</strong>
+             <span id="selectedCourseDescription">Choose the topics you want to study.</span>
+           </div>
+           <button type="button" class="secondary-btn change-course-btn" onclick="changeNurseCaseCourse()">
+             ← All Courses
+           </button>
+         </div>
+
 
       <h2>1. Choose Mode</h2>
       <div class="button-row">
@@ -29,7 +161,13 @@
 
 <h2>2. Choose Section</h2>
 
+<div id="courseModuleHeading" class="course-section-heading">
+  <h2 id="courseModulesTitle">Course Modules</h2>
+  <p id="courseModulesSubtitle">Select one or more topics below.</p>
+</div>
+
 <div class="module-list">
+<div id="nur113Modules" class="course-module-group course-hidden">
 
   <div class="module-card active-module">
     <div class="module-header">
@@ -326,6 +464,8 @@
 </label>
   </div>
 </div>
+
+
 <!-- ========================= -->
 <!-- INFLAMMATION & INFECTION -->
 <!-- ========================= -->
@@ -358,44 +498,163 @@
   <div class="topic-grid">
 
     <label><input type="checkbox" class="topic-check inflammation" value="Inflammation Fundamentals"> Inflammation Fundamentals</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Appendicitis"> Appendicitis</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Celiac Disease"> Celiac Disease</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Cholecystitis"> Cholecystitis</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Pancreatitis"> Pancreatitis</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Cirrhosis"> Cirrhosis</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Hepatitis"> Hepatitis</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Inflammatory Bowel Disease"> Inflammatory Bowel Disease</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Ostomy Care"> Ostomy Care</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Infection Fundamentals"> Infection Fundamentals</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Pediatric Infections"> Pediatric Infections</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Respiratory Infections"> Respiratory Infections</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Tuberculosis"> Tuberculosis</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Urinary Tract Infection"> Urinary Tract Infection</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Skin & Soft Tissue Infections"> Skin & Soft Tissue Infections</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Otitis Media"> Otitis Media</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Conjunctivitis"> Conjunctivitis</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="Inflammation & Infection Priority and SATA"> Priority & SATA Review</label>
-
     <label><input type="checkbox" class="topic-check inflammation" value="NGN Inflammation & Infection Cases"> NGN Case Studies</label>
 
   </div>
+</div>
+</div>
+
+<div id="nur114Modules" class="course-module-group course-hidden">
+<!-- ========================= -->
+<!-- CARDIAC DYSRHYTHMIAS -->
+<!-- ========================= -->
+
+<div class="module-card active-module">
+  <div class="module-header">
+    <div>
+      <h3>❤️ Cardiac Dysrhythmias</h3>
+
+      <p>
+        Cardiac conduction, ECG interpretation, sinus, atrial,
+        junctional and ventricular rhythms, medications,
+        emergency interventions, priority care, and NGN cases.
+      </p>
+
+      <p class="module-meta">
+        NUR 114 • Dysrhythmias • ECG • Pharmacology • Clinical Judgment
+      </p>
+    </div>
+
+    <label class="select-all">
+      <input
+        type="checkbox"
+        id="cardiacDysrhythmiasSelectAll"
+        onchange="toggleModule('cardiac-dysrhythmias', this.checked)"
+      >
+      Select All
+    </label>
+  </div>
+
+  <div class="topic-grid">
+
+    <label>
+      <input
+        type="checkbox"
+        class="topic-check cardiac-dysrhythmias"
+        value="Cardiac Conduction"
+      >
+      Cardiac Conduction
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        class="topic-check cardiac-dysrhythmias"
+        value="ECG Fundamentals"
+      >
+      ECG Fundamentals
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        class="topic-check cardiac-dysrhythmias"
+        value="Sinus Rhythms"
+      >
+      Sinus Rhythms
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        class="topic-check cardiac-dysrhythmias"
+        value="Atrial Rhythms"
+      >
+      Atrial Rhythms
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        class="topic-check cardiac-dysrhythmias"
+        value="Junctional Rhythms"
+      >
+      Junctional Rhythms
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        class="topic-check cardiac-dysrhythmias"
+        value="Ventricular Rhythms"
+      >
+      Ventricular Rhythms
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        class="topic-check cardiac-dysrhythmias"
+        value="Dysrhythmia Interventions"
+      >
+      Dysrhythmia Interventions
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        class="topic-check cardiac-dysrhythmias"
+        value="Dysrhythmia Pharmacology"
+      >
+      Dysrhythmia Pharmacology
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        class="topic-check cardiac-dysrhythmias"
+        value="Dysrhythmia Patient Teaching"
+      >
+      Patient Teaching
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        class="topic-check cardiac-dysrhythmias"
+        value="Dysrhythmia Priority and SATA"
+      >
+      Priority & SATA Review
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        class="topic-check cardiac-dysrhythmias"
+        value="Dysrhythmia NGN Cases"
+      >
+      NGN Clinical Judgment Cases
+    </label>
+
+  </div>
+</div>
 </div>
 </div>
 
@@ -414,6 +673,7 @@
 </select>
 
 <button class="start-btn" onclick="startQuiz()">Start Session</button>
+       </div>
     </section>
 
     <section id="quiz" class="card hidden">
@@ -475,6 +735,61 @@
   <div id="review"></div>
 </section>
   </main>
+
+<script>
+  let nurseCaseCourse = null;
+
+  const nurseCaseCourseMeta = {
+    nur113: {
+      name: "NUR 113",
+      description: "Foundations & Med-Surg",
+      title: "NUR 113 Modules",
+      subtitle: "Choose from your NUR 113 study modules and topics."
+    },
+    nur114: {
+      name: "NUR 114",
+      description: "Advanced Nursing",
+      title: "NUR 114 Modules",
+      subtitle: "Choose from your NUR 114 modules and topics."
+    }
+  };
+
+  function selectNurseCaseCourse(course) {
+    nurseCaseCourse = course;
+    const meta = nurseCaseCourseMeta[course];
+
+    document.getElementById("courseChooser").classList.add("course-hidden");
+    document.getElementById("courseStudySetup").classList.remove("course-hidden");
+    document.getElementById("nur113Modules").classList.toggle("course-hidden", course !== "nur113");
+    document.getElementById("nur114Modules").classList.toggle("course-hidden", course !== "nur114");
+
+    document.getElementById("selectedCourseName").textContent = meta.name;
+    document.getElementById("selectedCourseDescription").textContent = meta.description;
+    document.getElementById("courseModulesTitle").textContent = meta.title;
+    document.getElementById("courseModulesSubtitle").textContent = meta.subtitle;
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function changeNurseCaseCourse() {
+    nurseCaseCourse = null;
+
+    document.querySelectorAll(".topic-check, .select-all input[type='checkbox']").forEach(input => {
+      input.checked = false;
+    });
+
+    document.getElementById("nur113Modules").classList.add("course-hidden");
+    document.getElementById("nur114Modules").classList.add("course-hidden");
+    document.getElementById("courseStudySetup").classList.add("course-hidden");
+    document.getElementById("courseChooser").classList.remove("course-hidden");
+
+    const summary = document.getElementById("selectionSummary");
+    if (summary) summary.textContent = "Select a mode and topic to begin.";
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+</script>
+
 <!-- ========================= -->
 <!-- Utilities -->
 <!-- ========================= -->
@@ -550,6 +865,7 @@
 <script src="./questions/musculoskeletal/priority-sata-review.js"></script>
 <script src="./questions/musculoskeletal/musculoskeletal-mixed-review.js"></script>
 <script src="./questions/musculoskeletal/ngn-fracture-cases.js"></script>
+
 <!-- ========================= -->
 <!-- Perfusion -->
 <!-- ========================= -->
@@ -591,6 +907,22 @@
 <script src="./questions/inflammation-infection/conjunctivitis.js"></script>
 <script src="./questions/inflammation-infection/priority-sata-review.js"></script>
 <script src="./questions/inflammation-infection/ngn-inflammation-infection-cases.js"></script>
+
+<!-- ========================= -->
+<!-- CARDIAC DYSRHYTHMIAS -->
+<!-- ========================= -->
+
+<script src="./questions/cardiac-dysrhythmias/cardiac-conduction.js"></script>
+<script src="./questions/cardiac-dysrhythmias/ecg-fundamentals.js"></script>
+<script src="./questions/cardiac-dysrhythmias/sinus-rhythms.js"></script>
+<script src="./questions/cardiac-dysrhythmias/atrial-rhythms.js"></script>
+<script src="./questions/cardiac-dysrhythmias/junctional-rhythms.js"></script>
+<script src="./questions/cardiac-dysrhythmias/ventricular-rhythms.js"></script>
+<script src="./questions/cardiac-dysrhythmias/dysrhythmia-interventions.js"></script>
+<script src="./questions/cardiac-dysrhythmias/dysrhythmia-pharmacology.js"></script>
+<script src="./questions/cardiac-dysrhythmias/dysrhythmia-patient-teaching.js"></script>
+<script src="./questions/cardiac-dysrhythmias/dysrhythmia-priority-sata.js"></script>
+<script src="./questions/cardiac-dysrhythmias/dysrhythmia-ngn-cases.js"></script>
 
 <!-- ========================= -->
 <!-- Master Question Bank -->
