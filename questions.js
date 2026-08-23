@@ -94,7 +94,20 @@ const questionBank = [
   ...skinSoftTissueInfectionsQuestions,
   ...otitisMediaQuestions,
   ...conjunctivitisQuestions,
-  ...ngnInflammationInfectionCaseQuestions
+  ...ngnInflammationInfectionCaseQuestions,
+  
+  // CARDIAC DYSRHYTHMIAS
+  ...cardiacConductionQuestions,
+  ...ecgFundamentalsQuestions,
+  ...sinusRhythmQuestions,
+  ...atrialRhythmQuestions,
+  ...junctionalRhythmQuestions,
+  ...ventricularRhythmQuestions,
+  ...dysrhythmiaInterventionQuestions,
+  ...dysrhythmiaPharmacologyQuestions,
+  ...dysrhythmiaPatientTeachingQuestions,
+  ...dysrhythmiaPrioritySataQuestions,
+  ...dysrhythmiaNgnCaseQuestions,
 ];
 
 console.log(`NurseCase loaded ${questionBank.length} questions.`);
