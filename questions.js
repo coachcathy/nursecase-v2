@@ -108,6 +108,10 @@ const questionBank = [
   ...dysrhythmiaPatientTeachingQuestions,
   ...dysrhythmiaPrioritySataQuestions,
   ...dysrhythmiaNgnCaseQuestions,
+  ...neuroAnatomyFoundationQuestions,
+  ...cvaStrokeFoundationQuestions,
+  ...hydrocephalusIcpQuestions,
+  ...strokePriorityNgnQuestions,
 ];
 
 console.log(`NurseCase loaded ${questionBank.length} questions.`);
