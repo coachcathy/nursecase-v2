@@ -127,7 +127,7 @@
              </div>
              <p>Start the new semester with focused access to the growing NUR 114 question bank.</p>
              <p class="course-topic-preview">
-               Cardiac Dysrhythmias • CVA • Stroke • Hydrocephalus • ICP • Pharmacology • Priority • SATA • NGN
+               Cardiac Dysrhythmias • CVA • Stroke • Hydrocephalus • ICP • Medical Emergencies • Priority • SATA • NGN
              </p>
              <button type="button" onclick="selectNurseCaseCourse('nur114')">Open NUR 114 →</button>
            </article>
@@ -570,6 +570,26 @@
   </div>
 </div>
 
+<!-- MEDICAL EMERGENCY PART 1 -->
+<div class="module-card active-module">
+  <div class="module-header">
+    <div>
+      <h3>🚑 Medical Emergency Part 1</h3>
+      <p>Shock, DIC, submersion injuries, environmental emergencies, poisoning, and emergency preparedness.</p>
+      <p class="module-meta">NUR 114 • Medical Emergency • Priority • SATA • Clinical Judgment</p>
+    </div>
+    <label class="select-all"><input type="checkbox" id="medicalEmergencySelectAll" onchange="toggleModule('medical-emergency', this.checked)"> Select All</label>
+  </div>
+  <div class="topic-grid">
+    <label><input type="checkbox" class="topic-check medical-emergency" value="Shock"> Shock</label>
+    <label><input type="checkbox" class="topic-check medical-emergency" value="Disseminated Intravascular Coagulation (DIC)"> Disseminated Intravascular Coagulation (DIC)</label>
+    <label><input type="checkbox" class="topic-check medical-emergency" value="Submersion Injuries"> Submersion Injuries</label>
+    <label><input type="checkbox" class="topic-check medical-emergency" value="Environmental Emergencies"> Environmental Emergencies</label>
+    <label><input type="checkbox" class="topic-check medical-emergency" value="Poisoning"> Poisoning</label>
+    <label><input type="checkbox" class="topic-check medical-emergency" value="Emergency Preparedness"> Emergency Preparedness</label>
+  </div>
+</div>
+
 </div>
 </div>
 
@@ -844,6 +864,16 @@
 <script src="questions/perfusion-cva/hydrocephalus-icp.js"></script>
 <script src="questions/perfusion-cva/stroke-priority-ngn.js"></script>
 
+
+<!-- ========================= -->
+<!-- MEDICAL EMERGENCY PART 1 -->
+<!-- ========================= -->
+<script src="questions/medical-emergency/shock.js"></script>
+<script src="questions/medical-emergency/dic.js"></script>
+<script src="questions/medical-emergency/submersion.js"></script>
+<script src="questions/medical-emergency/environmental-emergencies.js"></script>
+<script src="questions/medical-emergency/poisoning.js"></script>
+<script src="questions/medical-emergency/emergency-preparedness.js"></script>
 
 <!-- ========================= -->
 <!-- Master Question Bank -->

@@ -112,6 +112,14 @@ const questionBank = [
   ...cvaStrokeFoundationQuestions,
   ...hydrocephalusIcpQuestions,
   ...strokePriorityNgnQuestions,
+
+  // NUR 114: Medical Emergency Part 1
+  ...medicalEmergencyShockQuestions,
+  ...medicalEmergencyDicQuestions,
+  ...medicalEmergencySubmersionQuestions,
+  ...medicalEmergencyEnvironmentalQuestions,
+  ...medicalEmergencyPoisoningQuestions,
+  ...medicalEmergencyPreparednessQuestions,
 ];
 
 console.log(`NurseCase loaded ${questionBank.length} questions.`);
